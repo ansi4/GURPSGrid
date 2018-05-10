@@ -48,7 +48,7 @@ class Input extends React.PureComponent {
   };
 
   onChange = (e) => {
-    const value = e.target.value;
+    const { value } = e.target;
     this.setState({ value });
     this.debouncedSave(this.props.preprocessValue(value));
   };

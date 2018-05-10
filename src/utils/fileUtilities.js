@@ -7,13 +7,11 @@ import roundToDecimals from './roundToDecimals';
  * @returns {Blob}
  */
 export const base64ToBlob = (base64Encoded, options) => {
-  const binary = atob(
-      base64Encoded.slice(
-        base64Encoded.indexOf('base64') + 7,
-        base64Encoded.length
-      )
-    ),
-    length = binary.length;
+  const binary = atob(base64Encoded.slice(
+      base64Encoded.indexOf('base64') + 7,
+      base64Encoded.length
+    )),
+    { length } = binary;
 
   const ab = new ArrayBuffer(length),
     ua = new Uint8Array(ab);

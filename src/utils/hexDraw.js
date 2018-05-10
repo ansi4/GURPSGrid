@@ -95,11 +95,11 @@ export function getAreaOutlinePath (areaMap) {
   let path = [];
   let edgeStart = getUntracedPathEdge(areaMap, areaArr, map);
 
+  var pathData = { map, path };
   while (edgeStart) {
-    let pathData = getTracedPath(areaMap, edgeStart.hex, edgeStart.vertex, map);
+    pathData = getTracedPath(areaMap, edgeStart.hex, edgeStart.vertex, pathData.map);
     path.push(...pathData.path);
-    map = pathData.map;
-    edgeStart = getUntracedPathEdge(areaMap, areaArr, map);
+    edgeStart = getUntracedPathEdge(areaMap, areaArr, pathData.map);
   }
 
   return path.join(' ');
@@ -130,7 +130,9 @@ export function getAreaInnerPath (areaMap) {
 
 export function getRectOutlinePath (from, to) {
   let path = [];
-  const { minCol, maxCol, minRow, maxRow } = getCoordBoundaries([from, to]);
+  const {
+     minCol, maxCol, minRow, maxRow,
+  } = getCoordBoundaries([from, to]);
 
   // Top boundary
   for (let col = minCol; col <= maxCol; col++) {

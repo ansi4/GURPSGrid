@@ -30,8 +30,7 @@ export function rehydrateState (string) {
         .map(({ id, name, dataUrl }) => {
           let file = dataUrlToFile(dataUrl, name);
           let preview = URL.createObjectURL(file);
-          let size = file.size;
-          let type = file.type;
+          let { size, type } = file;
 
           return {
             id,

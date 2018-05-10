@@ -36,6 +36,4 @@ class AppDebug extends React.PureComponent {
 
 const mapStateToProps = (state) => state;
 
-export default connect(
-  mapStateToProps,
-)(AppDebug);
+export default connect(mapStateToProps,)(AppDebug);

@@ -31,7 +31,7 @@ class Textures extends React.PureComponent {
           Alert.success(`Loaded ${file.name}`);
         })
         .catch((reason) => {
-          Alert.error(`Rejected ${name}: ${reason}`);
+          Alert.error(`Rejected ${file.name}: ${reason}`);
         });
     });
 

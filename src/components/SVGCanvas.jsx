@@ -15,7 +15,9 @@ class SVGCanvas extends React.PureComponent {
   };
 
   render () {
-    const { viewBoxOffsetX, viewBoxOffsetY, viewPortW, viewPortH } = this.props.data;
+    const {
+      viewBoxOffsetX, viewBoxOffsetY, viewPortW, viewPortH,
+    } = this.props.data;
 
     const viewBoxX = 0 - ((viewPortW) / 2) - viewBoxOffsetX;
     const viewBoxY = 0 - ((viewPortH) / 2) - viewBoxOffsetY;
