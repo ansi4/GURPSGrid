@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './SVGCanvas.scss';
+import './SVGCanvas.styl';
 
 class SVGCanvas extends React.PureComponent {
   static propTypes = {

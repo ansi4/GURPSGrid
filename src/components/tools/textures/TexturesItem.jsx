@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './TexturesItem.scss';
+import './TexturesItem.styl';
 
 import { getFileSizeReadable } from '../../../utils/fileUtilities';
 import Input from '../../ui/Input';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './StorageSaveError.scss';
+import './StorageSaveError.styl';
 
 class StorageSaveError extends React.PureComponent {
   static propTypes = {

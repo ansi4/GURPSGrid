@@ -43,6 +43,7 @@
     "react/jsx-no-bind": ["warn", {"allowArrowFunctions": false}],
     "padded-blocks": ["warn", { "blocks": "never", "classes": "never", "switches": "never" }],
     "react/jsx-filename-extension": ["warn"],
+    "linebreak-style": ["error", "windows"],
     "semi": "warn",
     "max-len": [
       "warn",

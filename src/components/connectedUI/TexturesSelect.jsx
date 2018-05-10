@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 
-import './TexturesSelect.scss';
+import './TexturesSelect.styl';
 
 import { getTextures } from '../../selectors/index';
 

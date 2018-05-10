@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './CanvasConfig.scss';
+import './CanvasConfig.styl';
 
 import DrawType from '../../DrawType';
 

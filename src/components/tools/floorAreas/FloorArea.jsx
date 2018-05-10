@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './FloorArea.scss';
+import './FloorArea.styl';
 
 import DrawType from '../../DrawType';
 import TexturesSelect from '../../connectedUI/TexturesSelect';

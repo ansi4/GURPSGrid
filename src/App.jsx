@@ -15,8 +15,8 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 // import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 // import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
-import './App.scss';
-import './components/ui/ui.scss';
+import './App.styl';
+import './components/ui/ui.styl';
 
 import { mouseMove, mouseUp, mouseDown, viewportRecalc, mouseLeave } from './actions/index';
 

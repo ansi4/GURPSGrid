@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import './BaseHexGrid.scss';
+import './BaseHexGrid.styl';
 
 import { oddrToPixels } from '../utils/hexMath';
 import { getActiveHexes, getActiveHexesInnerPath, getActiveHexesOutlinePath } from '../selectors/index';

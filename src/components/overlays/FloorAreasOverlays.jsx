@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import './FloorAreasOverlays.scss';
+import './FloorAreasOverlays.styl';
 
 import { getCurrentFloorAreaPath } from '../../selectors/index';
 

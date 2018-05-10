@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DropZone from 'react-dropzone';
 import Alert from 'react-s-alert';
 
-import './Textures.scss';
+import './Textures.styl';
 
 import { MAX_TEXTURE_SIZE } from '../../../config/general';
 import { getFileSizeReadable, fileToDataUrl } from '../../../utils/fileUtilities';

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import DropZone from 'react-dropzone';
 import Alert from 'react-s-alert';
 
-import './SaveLoad.scss';
+import './SaveLoad.styl';
 
 import Input from '../../ui/Input';
 
