@@ -1,59 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { getTextures } from '../../selectors/index';
+import { renderOption, renderValue } from './TextureOption';
 import './TexturesSelect.styl';
 
-import { getTextures } from '../../selectors/index';
+const TexturesSelect = props => (
+  <Select
+    className="ui-texturesSelect"
+    clearable={false}
+    searchable={false}
+    options={props.textures}
+    labelKey="name"
+    valueKey="id"
+    value={props.selectedId}
+    onChange={props.onChange}
 
-function renderValue (value) {
-  return (
-    <div
-      className="ui-texturesSelect__valueDisplay"
-      style={{
-        backgroundImage: `url(${value && value.preview})`,
-      }}
-    />
-  );
-}
+    optionRenderer={renderOption}
+    valueRenderer={renderValue}
+  />
+);
 
-function renderOption (value) {
-  return (
-    <div
-      className="ui-texturesSelect__optionDisplay"
-      style={{
-        backgroundImage: `url(${value && value.preview})`,
-      }}
-    />
-  );
-}
-
-class TexturesSelect extends React.PureComponent {
-  static propTypes = {
-    textures: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    onChange: PropTypes.func.isRequired,
-    selectedId: PropTypes.string,
-  };
-
-  render () {
-    return (
-      <Select
-        className="ui-texturesSelect"
-        clearable={false}
-        searchable={false}
-        options={this.props.textures}
-        labelKey="name"
-        valueKey="id"
-        value={this.props.selectedId}
-        onChange={this.props.onChange}
-
-        optionRenderer={renderOption}
-        valueRenderer={renderValue}
-      />
-    );
-  }
-}
+TexturesSelect.propTypes = {
+  textures: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  onChange: PropTypes.func.isRequired,
+  selectedId: PropTypes.string,
+};
 
 const mapStateToProps = (state) => ({
   textures: getTextures(state),

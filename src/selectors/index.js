@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { Map } from 'immutable';
 
 import { hexArrayToMap } from '../utils/hexStructures';
 import { getAreaOutlinePath, getAreaInnerPath } from '../utils/hexDraw';
@@ -37,10 +38,7 @@ export const getActiveToolData = ({ activeToolData }) => activeToolData;
 
 export const getTextureToUrlMap = createSelector(
   getTextures,
-  textures => textures.reduce((map, texture) => {
-    map[texture.id] = texture && texture.id;
-    return map;
-  }, {})
+  textures => new Map(textures.map(texture => [texture.id, texture && texture.id]))
 );
 
 // TODO refactor this to be memoized properly

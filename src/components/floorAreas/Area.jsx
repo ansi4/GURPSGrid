@@ -12,8 +12,8 @@ const Area = props => (
   );
 
   Area.propTypes = {
-    path: PropTypes.object.isRequired,
-    texture: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+    texture: PropTypes.string,
   };
 
-export default Area;
+export { Area };
