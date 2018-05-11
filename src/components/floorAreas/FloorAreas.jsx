@@ -2,46 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getFloorAreas, getTextures, getAreaPathCached } from '../../selectors/index';
+import Area from './Area';
+import { getFloorAreas, getTextureToUrlMap, getAreaPathCached } from '../../selectors/index';
 
-class FloorAreas extends React.PureComponent {
-  static propTypes = {
-    floorAreas: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    textures: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  };
+//TODO: move getAreaPathCached to selector
+const FloorAreas = props => (
+  <g> { props.floorAreas.map(area =>
+    <Area key={area.id} texture={props.textures[area.textureId]} path={getAreaPathCached(area.hexes)} />)}
+  </g>
+);
 
-  render () {
-    const texturesMap = this.props.textures.reduce(
-      (acc, texture) => {
-        acc[texture.id] = texture;
-        return acc;
-      },
-      {}
-    );
-
-    return (
-      <g>
-        {this.props.floorAreas.map((area) => {
-          const texture = texturesMap[area.textureId];
-          return (
-            <path
-              key={area.id}
-              d={getAreaPathCached(area.hexes)}
-              className="SVGFloorArea"
-              style={{
-                fill: `url(#${texture && texture.id})`,
-              }}
-            />
-          );
-        })}
-      </g>
-    );
-  }
-}
+FloorAreas.propTypes = {
+  floorAreas: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  textures: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   floorAreas: getFloorAreas(state),
-  textures: getTextures(state),
+  textures: getTextureToUrlMap(state),
 });
 
 export default connect(mapStateToProps)(FloorAreas);

@@ -35,6 +35,14 @@ export const getActiveTool = ({ activeTool }) => activeTool;
 
 export const getActiveToolData = ({ activeToolData }) => activeToolData;
 
+export const getTextureToUrlMap = createSelector(
+  getTextures,
+  textures => textures.reduce((map, texture) => {
+    map[texture.id] = texture && texture.id;
+    return map;
+  }, {})
+);
+
 // TODO refactor this to be memoized properly
 export const getCurrentFloorAreaPath = createSelector(
   [getFloorAreas, getActiveTool, getActiveToolData],
