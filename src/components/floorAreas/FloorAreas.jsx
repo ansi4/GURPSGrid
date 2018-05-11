@@ -14,7 +14,7 @@ const FloorAreas = props => (
 
 FloorAreas.propTypes = {
   floorAreas: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  textures: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
+  textures: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
