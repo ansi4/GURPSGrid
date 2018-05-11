@@ -4,41 +4,37 @@ import PropTypes from 'prop-types';
 import { getHexCircle, oddrToPixels } from '../../../utils/hexMath';
 import { hexArrayToMap } from '../../../utils/hexStructures';
 import { getAreaOutlinePath } from '../../../utils/hexDraw';
+import { BaseOverlay } from './BaseOverlay';
 
-class CircleOverlay extends React.PureComponent {
-  static propTypes = {
-    col: PropTypes.number.isRequired,
-    row: PropTypes.number.isRequired,
-    radius: PropTypes.number,
-    pixelRadius: PropTypes.number,
-    classMod: PropTypes.string,
-  };
+const getOutline = (center, radius) => {
+  return getAreaOutlinePath(hexArrayToMap(getHexCircle(center, radius)));
+};
 
-  static defaultProps = {
-    radius: 0,
-    pixelRadius: 0,
-  };
+const CircleOverlay = props => {
+  const center = { col: props.col, row: props.row };
+  const centerPixels = oddrToPixels(center);
+  return (
+    <BaseOverlay outline={getOutline(center, props.radius)} classMod={props.classMod}>
+      <circle
+        cx={centerPixels.x}
+        cy={centerPixels.y}
+        r={props.pixelRadius}
+        className="MouseOverlay__aux"
+      />
+    </BaseOverlay>
+  );
+};
+CircleOverlay.propTypes = {
+  col: PropTypes.number.isRequired,
+  row: PropTypes.number.isRequired,
+  radius: PropTypes.number,
+  pixelRadius: PropTypes.number,
+  classMod: PropTypes.string,
+};
 
-  render () {
-    const center = { col: this.props.col, row: this.props.row };
-    const centerPixels = oddrToPixels(center);
-
-    let outline = getAreaOutlinePath(hexArrayToMap(getHexCircle(center, this.props.radius)));
-
-    return (
-      <g className="MouseOverlay">
-        <path d={outline} className={`MouseOverlay__bg MouseOverlay__bg_${this.props.classMod}`} />
-
-        <circle
-          cx={centerPixels.x}
-          cy={centerPixels.y}
-          r={this.props.pixelRadius}
-          className="MouseOverlay__aux"
-        />
-      </g>
-    );
-  }
-}
-
+CircleOverlay.defaultProps = {
+  radius: 0,
+  pixelRadius: 0,
+};
 export default CircleOverlay;
 

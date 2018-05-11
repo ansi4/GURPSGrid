@@ -6,20 +6,13 @@ import './FloorAreasOverlays.styl';
 
 import { getCurrentFloorAreaPath } from '../../selectors/index';
 
-class FloorAreasOverlays extends React.PureComponent {
-  static propTypes = {
-    path: PropTypes.string,
-  };
+const FloorAreasOverlays = props => props.path
+    ? <path d={props.path} className="FloorAreasOverlay" />
+    : null;
 
-  render () {
-    if (this.props.path) {
-      return <path d={this.props.path} className="FloorAreasOverlay" />;
-    }
-
-    return null;
-  }
-}
-
+FloorAreasOverlays.propTypes = {
+  path: PropTypes.string,
+};
 const mapStateToProps = (state, props) => ({
   path: getCurrentFloorAreaPath(state, props),
 });

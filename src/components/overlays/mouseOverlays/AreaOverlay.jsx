@@ -1,33 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { overlayClass, BaseOverlay } from './BaseOverlay';
 import { getAreaOutlinePath, getAreaInnerPath } from '../../../utils/hexDraw';
 import { hexArrayToMap } from '../../../utils/hexStructures';
 
-class MouseOverlay extends React.PureComponent {
-  static propTypes = {
-    col: PropTypes.number,
-    row: PropTypes.number,
-    areaArray: PropTypes.array,
-    classMod: PropTypes.string,
-    drawGrid: PropTypes.bool,
-  };
+const getOutlines = (area, col, row) => {
+  const map = hexArrayToMap(area || [[col, row]]);
+  return { outer: getAreaOutlinePath(map), inner: getAreaInnerPath(map) };
+};
 
-  static defaultProps = {
-    drawGrid: false,
-  };
+const MouseOverlay = props => {
+  const {outer, inner} = getOutlines(props.areaArray, props.col, props.row);
+  return (
+    <BaseOverlay outline={outer} classMod={props.classMod}>
+      { props.drawGrid
+      && <path d={inner} className={overlayClass('grid', props.classMod)} />}
+    </BaseOverlay>
+  );
+};
 
-  render () {
-    const map = hexArrayToMap(this.props.areaArray || [[this.props.col, this.props.row]]);
-
-    return (
-      <g className="MouseOverlay">
-        <path d={getAreaOutlinePath(map)} className={`MouseOverlay__bg MouseOverlay__bg_${this.props.classMod}`} />
-        {this.props.drawGrid
-        && <path d={getAreaInnerPath(map)} className={`MouseOverlay__grid MouseOverlay__grid_${this.props.classMod}`} />}
-      </g>
-    );
-  }
-}
-
+MouseOverlay.propTypes = {
+  col: PropTypes.number,
+  row: PropTypes.number,
+  areaArray: PropTypes.array,
+  classMod: PropTypes.string,
+  drawGrid: PropTypes.bool,
+};
+MouseOverlay.defaultProps = {
+  drawGrid: false,
+};
 export default MouseOverlay;
