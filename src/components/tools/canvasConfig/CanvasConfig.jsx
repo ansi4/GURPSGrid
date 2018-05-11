@@ -4,18 +4,12 @@ import './CanvasConfig.styl';
 
 import DrawType from '../../DrawType';
 
-class CanvasConfig extends React.PureComponent {
-  static propTypes = {};
+const CanvasConfig = () => (
+  <div className="CanvasConfig">
+    <h4>Draw</h4>
 
-  render () {
-    return (
-      <div className="CanvasConfig">
-        <h4>Draw</h4>
-
-        <DrawType />
-      </div>
-    );
-  }
-}
+    <DrawType />
+  </div>
+);
 
 export default CanvasConfig;
